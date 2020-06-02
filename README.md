@@ -19,3 +19,9 @@ Scan TCP ports:
 ```shell
 for i in {1..9000}; do SERVER="127.0.0.1"; PORT=$i; (echo  > /dev/tcp/$SERVER/$PORT) &> /dev/null && echo "Port $PORT seems to be open"; done
 ```
+
+Connect to a port and execute the command received:
+
+```shell
+exec 3<>/dev/tcp/127.0.0.1/31337; cat <&3 | sh
+```
