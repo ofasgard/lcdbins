@@ -31,3 +31,9 @@ Use letmeoutofyour.net to check firewall ACLs for a port:
 ```shell
 exec 3<>/dev/tcp/letmeoutofyour.net/31337; echo -e "GET / HTTP/1.0\r\n\r\n" >&3; cat <&3 | grep w00tw00t
 ```
+
+Use dyndns.org to find your public IP address:
+
+```shell
+exec 3<>/dev/tcp/checkip.dyndns.org/80; echo -e "GET / HTTP/1.0\r\n\r\n" >&3; cat <&3
+```
