@@ -11,7 +11,7 @@ for i in $(awk -F "[ :]+" '{print $4}' /proc/net/tcp); do bc <<< "obase=10; ibas
 Get all IP addresses in /etc/:
 
 ```shell
-grep -Ero '\b((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\.|$)){4}\b' /etc/* 2>/dev/null
+grep -ro '[0-9]\{1,3\}\(\.[0-9]\{1,3\}\)\{3\}' /etc/* 2>/dev/null
 ```
 
 Scan TCP ports:
