@@ -13,7 +13,7 @@ grep -ro '[0-9]\{1,3\}\(\.[0-9]\{1,3\}\)\{3\}' /etc/* 2>/dev/null
 grep -Ero '\b((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\.|$)){4}\b' /etc/* 2>/dev/null
 ```
 
-## /proc
+## /proc - general system enumeration
 
 Get kernel version information
 
@@ -40,6 +40,8 @@ List information about processes
 echo PID NAME UID GID; pids=$(ls /proc | grep '^[0-9]*$'); for pid in $pids; do name=$(cat /proc/$pid/status 2> /dev/null | grep -i '^name' | awk -F '[ \t]' '{print $2}'); uid=$(cat /proc/$pid/status 2> /dev/null | grep -i '^uid:' | awk -F '[ \t]' '{print $2}'); gid=$(cat /proc/$pid/status 2> /dev/null | grep -i '^gid:' | awk -F '[ \t]' '{print $2}'); echo $pid $name $uid $gid; done;
 ```
 
+## /proc/net - network enumeration
+
 Parse listening ports on /proc/net/tcp
 
 ```shell
@@ -52,7 +54,7 @@ Parse destination and gateway from /proc/net/route
 echo Interface Destination Gateway; awk "NR >= 2" /proc/net/route |while read line; do printf '%s %d.%d.%d.%d %d.%d.%d.%d\n' $(echo $line | awk -F ' ' '{print $1}') $(echo $line | awk -F ' ' '{print $2}' | sed "s/../0x& /g" | awk '{ for (i=NF; i>1; i--) printf("%s ",$i); print $1; }') $(echo $line | awk -F ' ' '{print $3}' | sed "s/../0x& /g" | awk '{ for (i=NF; i>1; i--) printf("%s ",$i); print $1; }'); done
 ```
 
-## /dev/tcp (requires bash)
+## /dev/tcp - making connections (requires bash)
 
 Connect to a port and execute the command received
 
