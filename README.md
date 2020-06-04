@@ -15,7 +15,7 @@ Here is a list of the binaries used by the oneliners in this repository:
 - sed
 - sort
 
-Greetz to moogz for assistance and contributions.
+Where possible alternatives have been provided in case one binary is unavailable on your specific system. Greetz to moogz for assistance and contributions.
 
 ## System Enumeration
 
