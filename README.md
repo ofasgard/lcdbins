@@ -26,7 +26,7 @@ grep -ro '[0-9]\{1,3\}\(\.[0-9]\{1,3\}\)\{3\}' /etc/* 2>/dev/null
 grep -Ero '\b((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\.|$)){4}\b' /etc/* 2>/dev/null
 ```
 
-## /proc - system enumeration
+## System Enumeration
 
 Get kernel version information
 
@@ -59,7 +59,7 @@ List information about processes
 echo PID NAME UID GID; pids=$(ls /proc | grep '^[0-9]*$'); for pid in $pids; do name=$(cat /proc/$pid/status 2> /dev/null | awk -F'[ \t]' '{if(tolower($1) == "name:") print $2 }'); uid=$(cat /proc/$pid/status 2> /dev/null | awk -F'[ \t]' '{if(tolower($1) == "uid:") print $2 }'); gid=$(cat /proc/$pid/status 2> /dev/null | awk -F'[ \t]' '{if(tolower($1) == "gid:") print $2 }'); echo $pid $name $uid $gid; done;
 ```
 
-## /proc/net - network enumeration
+## Network Enumeration
 
 Parse listening ports on /proc/net/tcp
 
@@ -79,7 +79,7 @@ Print the ARP table
 cat /proc/net/arp
 ```
 
-## /dev/tcp - making connections (requires bash)
+## Network Connections (requires bash)
 
 Connect to a port and execute the command received
 
