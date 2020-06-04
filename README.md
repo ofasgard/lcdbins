@@ -14,7 +14,7 @@ grep -Ero '\b((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\.|$)){4}\b' /etc/* 2>/dev/
 Parse listening ports on /proc/net/tcp
 
 ```shell
-for i in $(grep " 0A " /proc/net/tcp | awk -F "[ :]+" '{print $4}'); do bc <<< "obase=10; ibase=16; $i"; done | sort -un
+for i in $(grep " 0A " /proc/net/tcp | awk -F "[ :]+" '{print $4}'); do echo "obase=10; ibase=16; $i" | bc; done | sort -un
 ```
 
 Parse destination and gateway from /proc/net/route
