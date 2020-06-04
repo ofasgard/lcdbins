@@ -1,6 +1,8 @@
 # lcdbins
 
-An **lcdbin** is a lowest-common denominator binary; a platform-agnostic oneliner that should work on almost any UNIX environment.
+An **lcdbin** is a lowest-common denominator binary; a platform-agnostic oneliner that should work on almost any UNIX environment. The liners documented here should work on any UNIX environment, except where otherwise specified. Some liners may not work on environments that are missing standard utilities such as bc.
+
+Greetz to moogz for assistance and contributions.
 
 ## Universal Oneliners
 
