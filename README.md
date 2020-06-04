@@ -19,6 +19,18 @@ Get kernel version information
 cat /proc/version
 ```
 
+Get hostname
+
+```shell
+cat /proc/sys/kernel/hostname
+```
+
+List information about processes
+
+```
+echo PID NAME UID GID; pids=$(ls /proc | grep '^[0-9]*$'); for pid in $pids; do name=$(cat /proc/$pid/status 2> /dev/null | grep -i '^name' | awk -F '[ \t]' '{print $2}'); uid=$(cat /proc/$pid/status 2> /dev/null | grep -i '^uid:' | awk -F '[ \t]' '{print $2}'); gid=$(cat /proc/$pid/status 2> /dev/null | grep -i '^gid:' | awk -F '[ \t]' '{print $2}'); echo $pid $name $uid $gid; done;
+```
+
 Parse listening ports on /proc/net/tcp
 
 ```shell
