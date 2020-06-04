@@ -11,6 +11,14 @@ grep -ro '[0-9]\{1,3\}\(\.[0-9]\{1,3\}\)\{3\}' /etc/* 2>/dev/null
 grep -Ero '\b((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\.|$)){4}\b' /etc/* 2>/dev/null
 ```
 
+### /proc
+
+Get kernel version information
+
+```shell
+cat /proc/version
+```
+
 Parse listening ports on /proc/net/tcp
 
 ```shell
