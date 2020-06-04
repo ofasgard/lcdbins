@@ -69,7 +69,7 @@ Parse listening UDP ports on /proc/net/udp
 
 ```shell
 for i in $(awk -F "[ :]+" '{if(NR >=2) print $4}' /proc/net/udp); do echo "obase=10; ibase=16; $i" | bc; done | sort -un
-for i in $(awk -F "[ :]+" '{if(NR >=2) print $4}' /proc/net/udp); do printf "%d\n" "0x$i" | bc; done | sort -un
+for i in $(awk -F "[ :]+" '{if(NR >=2) print $4}' /proc/net/udp); do printf "%d\n" "0x$i"; done | sort -un
 ```
 
 Parse destination and gateway from /proc/net/route
