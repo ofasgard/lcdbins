@@ -17,12 +17,19 @@ Get kernel version information
 
 ```shell
 cat /proc/version
+cat /proc/sys/kernel/version
 ```
 
 Get hostname
 
 ```shell
 cat /proc/sys/kernel/hostname
+```
+
+Get current uid and gid
+
+```shell
+uid=$(cat /proc/self/status | grep -i '^uid:' | awk -F '[ \t]' '{print $2}'); gid=$(cat /proc/self/status | grep -i '^gid:' | awk -F '[ \t]' '{print $2}'); echo uid $uid gid $gid
 ```
 
 List information about processes
