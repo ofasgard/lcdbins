@@ -44,6 +44,12 @@ Get group membership for uid
 uid=1000; user=$(awk -F : -v x="$uid" '{if($3==x) print $1}' /etc/passwd); grep $user /etc/group
 ```
 
+List environment variables
+
+```shell
+ sed 's/\0/\n/g' /proc/self/environ
+ ```
+
 List information about processes
 
 ```shell
