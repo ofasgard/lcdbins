@@ -61,6 +61,12 @@ echo PID NAME UID GID; pids=$(ls /proc | grep '^[0-9]*$'); for pid in $pids; do 
 
 ## Network Enumeration
 
+Get local network interface addresses from /proc/net/fib_trie
+
+```shell
+awk '/32 host/ { print f } {f=$2}' /proc/net/fib_trie | sort -u
+```
+
 Parse listening ports on /proc/net/tcp
 
 ```shell
