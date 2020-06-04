@@ -46,8 +46,14 @@ uid=1000; user=$(awk -F : -v x="$uid" '{if($3==x) print $1}' /etc/passwd); grep 
 
 List information about processes
 
-```
+```shell
 echo PID NAME UID GID; pids=$(ls /proc | grep '^[0-9]*$'); for pid in $pids; do name=$(cat /proc/$pid/status 2> /dev/null | awk -F'[ \t]' '{if(tolower($1) == "name:") print $2 }'); uid=$(cat /proc/$pid/status 2> /dev/null | awk -F'[ \t]' '{if(tolower($1) == "uid:") print $2 }'); gid=$(cat /proc/$pid/status 2> /dev/null | awk -F'[ \t]' '{if(tolower($1) == "gid:") print $2 }'); echo $pid $name $uid $gid; done;
+```
+
+List mounted filesystems
+
+```shell
+cat /proc/mounts
 ```
 
 ## Network Enumeration
@@ -61,15 +67,15 @@ awk '/32 host/ { print f } {f=$2}' /proc/net/fib_trie | sort -u
 Parse listening TCP ports on /proc/net/tcp
 
 ```shell
-for i in $(grep " 0A " /proc/net/tcp | awk -F "[ :]+" '{print $4}'); do echo "obase=10; ibase=16; $i" | bc; done | sort -un
 for i in $(grep " 0A " /proc/net/tcp | awk -F "[ :]+" '{print $4}'); do printf "%d\n" "0x$i"; done | sort -un
+for i in $(grep " 0A " /proc/net/tcp | awk -F "[ :]+" '{print $4}'); do echo "obase=10; ibase=16; $i" | bc; done | sort -un
 ```
 
 Parse listening UDP ports on /proc/net/udp
 
 ```shell
-for i in $(awk -F "[ :]+" '{if(NR >=2) print $4}' /proc/net/udp); do echo "obase=10; ibase=16; $i" | bc; done | sort -un
 for i in $(awk -F "[ :]+" '{if(NR >=2) print $4}' /proc/net/udp); do printf "%d\n" "0x$i"; done | sort -un
+for i in $(awk -F "[ :]+" '{if(NR >=2) print $4}' /proc/net/udp); do echo "obase=10; ibase=16; $i" | bc; done | sort -un
 ```
 
 Parse destination and gateway from /proc/net/route
