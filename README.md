@@ -47,6 +47,12 @@ Get current uid and gid
 uid=$(cat /proc/self/status | awk -F'[ \t]' '{if(tolower($1) == "uid:") print $2 }'); gid=$(cat /proc/self/status | awk -F'[ \t]' '{if(tolower($1) == "gid:") print $2 }'); echo uid $uid gid $gid
 ```
 
+Get group membership for uid
+
+```shell
+uid=1000; user=$(cat /etc/passwd | awk -F : -v x="$uid" '{if($3==x) print $1}'); grep $user /etc/group
+```
+
 List information about processes
 
 ```
