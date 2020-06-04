@@ -1,6 +1,6 @@
 # lcdbins
 
-An **lcdbin** is a lowest-common denominator binary; a platform-agnostic oneliner that should work on almost any UNIX environment. The liners documented here should work on any UNIX environment, except where otherwise specified. Some liners may not work on environments that are missing standard utilities such as bc.
+An **lcdbin** is a lowest-common denominator binary or script; a platform-agnostic oneliner that should work on almost any UNIX environment using universal built-in tools. The liners documented here should work on any UNIX environment, except where otherwise specified. Some liners may not work on environments that are missing standard utilities such as bc.
 
 Greetz to moogz for assistance and contributions.
 
@@ -13,7 +13,7 @@ grep -ro '[0-9]\{1,3\}\(\.[0-9]\{1,3\}\)\{3\}' /etc/* 2>/dev/null
 grep -Ero '\b((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\.|$)){4}\b' /etc/* 2>/dev/null
 ```
 
-## /proc - general system enumeration
+## /proc - system enumeration
 
 Get kernel version information
 
@@ -52,6 +52,12 @@ Parse destination and gateway from /proc/net/route
 
 ```shell
 echo Interface Destination Gateway; awk "NR >= 2" /proc/net/route |while read line; do printf '%s %d.%d.%d.%d %d.%d.%d.%d\n' $(echo $line | awk -F ' ' '{print $1}') $(echo $line | awk -F ' ' '{print $2}' | sed "s/../0x& /g" | awk '{ for (i=NF; i>1; i--) printf("%s ",$i); print $1; }') $(echo $line | awk -F ' ' '{print $3}' | sed "s/../0x& /g" | awk '{ for (i=NF; i>1; i--) printf("%s ",$i); print $1; }'); done
+```
+
+Print the ARP table
+
+```shell
+cat /proc/net/arp
 ```
 
 ## /dev/tcp - making connections (requires bash)
