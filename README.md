@@ -50,7 +50,7 @@ uid=$(cat /proc/self/status | awk -F'[ \t]' '{if(tolower($1) == "uid:") print $2
 Get group membership for uid
 
 ```shell
-uid=1000; user=$(cat /etc/passwd | awk -F : -v x="$uid" '{if($3==x) print $1}'); grep $user /etc/group
+uid=1000; user=$(awk -F : -v x="$uid" '{if($3==x) print $1}' /etc/passwd); grep $user /etc/group
 ```
 
 List information about processes
