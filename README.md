@@ -1,6 +1,6 @@
 # lcdbins
 
-An **lcdbin** is a lowest-common denominator binary or script; a platform-agnostic oneliner that should work on almost any UNIX environment using universal built-in tools. The liners documented here should work on any UNIX environment, except where otherwise specified. Some liners may not work on environments that are missing standard utilities such as bc.
+An **lcdbin** is a lowest-common denominator binary - one which, with rare exceptions, should be present on any UNIX-based operating system. This repository is a collection of oneliners that use lcdbins to perform enumeration and post-exploitation activities that you'd normally use other tools for - such as id, netstat or python. Use them when you find yourself in a stripped-down environment where the usual tools aren't available.
 
 Greetz to moogz for assistance and contributions.
 
