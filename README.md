@@ -17,15 +17,6 @@ Here is a list of the binaries used by the oneliners in this repository:
 
 Greetz to moogz for assistance and contributions.
 
-## Universal Oneliners
-
-Get all IP addresses in /etc/
-
-```shell
-grep -ro '[0-9]\{1,3\}\(\.[0-9]\{1,3\}\)\{3\}' /etc/* 2>/dev/null
-grep -Ero '\b((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\.|$)){4}\b' /etc/* 2>/dev/null
-```
-
 ## System Enumeration
 
 Get kernel version information
@@ -115,4 +106,13 @@ Scan TCP ports
 
 ```shell
 for i in {1..9000}; do SERVER="127.0.0.1"; PORT=$i; (echo  > /dev/tcp/$SERVER/$PORT) &> /dev/null && echo "Port $PORT seems to be open"; done
+```
+
+## Miscellaneous
+
+Get all IP addresses in a directory
+
+```shell
+grep -ro '[0-9]\{1,3\}\(\.[0-9]\{1,3\}\)\{3\}' /etc/* 2>/dev/null
+grep -Ero '\b((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\.|$)){4}\b' /etc/* 2>/dev/null
 ```
