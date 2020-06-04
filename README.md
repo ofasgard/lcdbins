@@ -44,13 +44,13 @@ cat /proc/sys/kernel/hostname
 Get current uid and gid
 
 ```shell
-uid=$(cat /proc/self/status | grep -i '^uid:' | awk -F '[ \t]' '{print $2}'); gid=$(cat /proc/self/status | grep -i '^gid:' | awk -F '[ \t]' '{print $2}'); echo uid $uid gid $gid
+uid=$(cat /proc/self/status | awk -F'[ \t]' '{if(tolower($1) == "uid:") print $2 }'); gid=$(cat /proc/self/status | awk -F'[ \t]' '{if(tolower($1) == "gid:") print $2 }'); echo uid $uid gid $gid
 ```
 
 List information about processes
 
 ```
-echo PID NAME UID GID; pids=$(ls /proc | grep '^[0-9]*$'); for pid in $pids; do name=$(cat /proc/$pid/status 2> /dev/null | grep -i '^name' | awk -F '[ \t]' '{print $2}'); uid=$(cat /proc/$pid/status 2> /dev/null | grep -i '^uid:' | awk -F '[ \t]' '{print $2}'); gid=$(cat /proc/$pid/status 2> /dev/null | grep -i '^gid:' | awk -F '[ \t]' '{print $2}'); echo $pid $name $uid $gid; done;
+echo PID NAME UID GID; pids=$(ls /proc | grep '^[0-9]*$'); for pid in $pids; do name=$(cat /proc/$pid/status 2> /dev/null | awk -F'[ \t]' '{if(tolower($1) == "name:") print $2 }'); uid=$(cat /proc/$pid/status 2> /dev/null | awk -F'[ \t]' '{if(tolower($1) == "uid:") print $2 }'); gid=$(cat /proc/$pid/status 2> /dev/null | awk -F'[ \t]' '{if(tolower($1) == "gid:") print $2 }'); echo $pid $name $uid $gid; done;
 ```
 
 ## /proc/net - network enumeration
