@@ -59,7 +59,7 @@ echo PID NAME UID GID; pids=$(ls /proc | grep '^[0-9]*$'); for pid in $pids; do 
 List mounted filesystems
 
 ```shell
-cat /proc/mounts
+cat /proc/self/mounts
 ```
 
 ## Network Enumeration
