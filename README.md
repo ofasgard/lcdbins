@@ -62,6 +62,12 @@ List mounted filesystems
 cat /proc/self/mounts
 ```
 
+Find a filename without the `find` command
+
+```shell
+ls -R /etc 2> /dev/null | awk '/:$/&&f{s=$0;f=0}/:$/&&!f{sub(/:$/,"");s=$0;f=1;next}NF&&f{ print s"/"$0 }' | grep passwd
+```
+
 ## Network Enumeration
 
 Get local network interface addresses from /proc/net/fib_trie
