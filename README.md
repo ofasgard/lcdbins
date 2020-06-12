@@ -71,7 +71,7 @@ ls -R /etc 2> /dev/null | awk '/:$/&&f{s=$0;f=0}/:$/&&!f{sub(/:$/,"");s=$0;f=1;n
 Search HISTFILE for credentials
 
 ```shell
-x=(sql smbclient key password user); for i in ${x[@]}; do grep -i "$i" $HISTFILE; done
+x=(sql smbclient key pass user); for i in ${x[@]}; do grep -i "$i" $HISTFILE; done
 ````
 
 ## Network Enumeration
