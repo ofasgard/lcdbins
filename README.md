@@ -15,7 +15,7 @@ Here is a list of the binaries used by the oneliners in this repository:
 - sed
 - sort
 
-Where possible alternatives have been provided in case one binary is unavailable on your specific system. Greetz to moogz for assistance and contributions.
+Where possible, alternatives have been provided in case one binary is unavailable on your specific system; note that many of the commands below rely on procfs. Greetz to moogz for assistance and contributions.
 
 ## System Enumeration
 
@@ -67,6 +67,12 @@ Find a filename without the `find` command
 ```shell
 ls -R /etc 2> /dev/null | awk '/:$/&&f{s=$0;f=0}/:$/&&!f{sub(/:$/,"");s=$0;f=1;next}NF&&f{ print s"/"$0 }' | grep passwd
 ```
+
+Search HISTFILE for credentials
+
+```shell
+x=(sql smbclient key password user); for i in ${x[@]}; do grep -i "$i" $HISTFILE; done
+````
 
 ## Network Enumeration
 
